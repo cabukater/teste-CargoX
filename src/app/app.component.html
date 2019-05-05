@@ -1,20 +1,230 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container-fluid">
+  <div class="row p-3">
+    <div class="col-12">
+      <h1>{{data.customer.name}}</h1>
+      <p class="ml-2">Id do Cliente {{data.customer.id}}</p>
+    </div>
+  </div>
+  <div class="row p-3">
 
+    <div class="col-md-7 col-sm-12">
+        <div class="row p-3 bg-white">
+            <div class="col-md-6 col-sm-12  ">
+      <div class="row my-2">
+        <div class="col-1">
+          <i class="icon-id"></i>
+        </div>
+        <div class="col-11">
+          <h3 class="ml-2">Id do frete CargoX</h3>
+          <p class="ml-2">{{data.id}}</p>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-1">
+          <i class="icon-id"></i>
+        </div>
+        <div class="col-11">
+          <h3 class="ml-2"> Nº do Pedido do cliente</h3>
+          <p class="ml-2">{{data.customer_tracking_number}}</p>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-1">
+          <i class="fas fa-truck-loading"></i>
+        </div>
+        <div class="col-11">
+          <h3 class="ml-2"> Motorista</h3>
+          <p class="ml-2">{{data.trucker.name}}</p>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-1">
+          <i class="fas fa-phone"></i>
+        </div>
+        <div class="col-11">
+          <h3 class="ml-2"> Telefone</h3>
+          <p class="ml-2"> + {{data.trucker.phone | slice:0:2}} ({{data.trucker.phone | slice:2:4}}) {{data.trucker.phone | slice:4}}</p>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-1">
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+        <div class="col-11">
+          <h3 class="ml-2"> Aplicativo</h3>
+          <ul>
+            <li> Acesso em: {{data.trucker.last_app_open_at | date :  'dd/M/yyyy' }}</li>
+            <li>{{data.trucker.last_app_position_at | date:  'dd/M/yyyy' }} </li>
+            <li>{{data.trucker.first_login_at | date: 'dd/M/yyyy' }}</li>
+            <li> {{data.trucker.app_version}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-1">
+          <i class="fas fa-truck"></i>
+        </div>
+        <div class="col-11">
+          <h3 class="ml-2">Veiculo</h3>
+          <ul class="no-decoration m-0 p-0">
+            <li *ngFor="let truck of data.trucks">
+              {{truck.plate}}
+              {{truck.type.name}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="col-11">
+          <h3 class="ml-2">
+            Origem
+          </h3>
+          <p class="ml-2">{{data.origin.address}}, {{data.origin.number}}     </p>
+          <p class="ml-2"> {{data.origin.city}} - {{data.origin.state}} - CEP : {{data.origin.zip_code}}</p>
+        </div>
+      </div>
+     <div class="row my-2">
+        <div class="col-1">
+          <i class="fas fa-flag"></i>
+        </div>
+        <div class="col-11">
+          <h3 class="ml-2"> Destino</h3>
+          <p class="ml-2">{{data.destination.address}}, {{data.destination.number}}</p>
+          <p class="ml-2"> {{data.destination.city}} - {{data.destination.state}} - CEP : {{data.destination.zip_code}}</p>
+        </div>
+      </div>
+      <div class="row my-2">
+        <div class="col-1">
+          <i class="fas fa-people-carry"></i>
+        </div>
+        <div class="col-11">
+          <h3 class="ml-2"> Operação </h3>
+          <p class="ml-2"> {{data.trucker_seeker.name}}</p>
+        </div>
+      </div>
+     <div class="row my-2">
+        <div class="col-1">
+          <i class="fas fa-user-tag"></i>
+        </div>
+        <div class="col-11">
+          <h3 class="ml-2">Venda</h3>
+          <p class="ml-2">{{data.salesperson.name}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+     <div class="row my-2">
+        <div class="col-1">
+          <i class="fas fa-calendar-day"></i>
+        </div>
+        <div class="col-11">
+          <ul class="no-decoration m-0 p-0">
+            <li>
+              <h3> Coleta Agendada</h3>
+              <p class="ml-2">{{data.pickup_date  }}</p>
+            </li>
+            <li>
+              <h3> Entrega Agendada</h3>
+              <p> {{data.delivery_date * 1000 | date:'dd/MM/yyyy HH:mm' }}</p>
+            </li>
+            <li>
+              <h3 > Entrega Calculada</h3>
+              <p>{{data.estimated_time_of_arrival * 1000 | date:'dd/MM/yyyy HH:mm'}}</p>
+            </li>
+            <li>
+              <h3 >Entrega Manual</h3>
+             <p > {{ data.manual_input_estimated_time_of_arrival }} </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-1">
+          <i class="far fa-copy"></i>
+        </div>
+        <div class="col-11">
+          <h3 class="ml-2">Documentos</h3>
+          <div class="badge m-1" *ngFor="let document of data.documents"
+            [ngClass]="{'bg-success':document.status === 'emitted'}"> {{document.name}}</div>
+        </div>
+      </div>
+
+      <div class="row my-3 m">
+        <div class="col-1">
+          <i class="fas fa-hand-holding-usd"></i>
+        </div>
+        <div class="col-11">
+          <h3 class="ml-2">Pagamentos</h3>
+          <div class="badge m-1"
+          [ngClass]="{'bg-success':payment.status === 'emitted'}"
+          *ngFor="let payment of data.payments"> {{payment.name}}</div>
+        </div>
+
+      </div>
+      <div class="row my-2">
+        <div class="col-1">
+          <i class="fas fa-ellipsis-v"></i>
+        </div>
+        <div class="col-11">
+          <h3 class="ml-2"> Status </h3>
+          <ul class="timeline" >
+              <div *ngFor="let data of data.status_history " [ngClass]="data.translation | checkStatus">
+                <div *ngIf="data.step != null " >
+                  <h3 class="ml-2 " *ngIf="data.step != null" >{{data.translation }}</h3>
+                   <p class="ml-2">{{data.at  * 1000 | date:'dd/MM/yyyy hh:mm'}}</p>
+                   </div>
+              </div>
+
+
+            <li>
+              <h3 class="ml-2">Fila Coleta</h3>
+              <p class="ml-2">sasasasa</p>
+            </li>
+            <li>
+              <h3 class="ml-2">Carregando</h3>
+              <p class="ml-2">sasasasa</p>            </li>
+            <li>
+              <h3 class="ml-2">Em trânsito</h3>
+              <p class="ml-2">sasasasa</p>
+            </li>
+            <li>
+              <h3 class="ml-2">Fila descarga</h3>
+              <p class="ml-2">sasasasa</p>
+            </li>
+            <li>
+              <h3 class="ml-2">Descargando</h3>
+              <p class="ml-2">sasasasa</p>
+            </li>
+            <li>
+              <h3 class="ml-2">Entregue</h3>
+              <p class="ml-2">sasasasa</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+  <div class="col-md-5 col-sm-12 ">
+      <agm-map [latitude]="latOrg" [longitude]="longOrg" [zoom]="10">
+        <agm-polyline [strokeColor]="'blue'">
+          <agm-polyline-point [latitude]="latOrg" [longitude]="longOrg">
+          </agm-polyline-point>
+
+          <agm-polyline-point [latitude]="latDest" [longitude]="longDest">
+          </agm-polyline-point>
+        </agm-polyline>
+        <agm-marker class="mapMarker"   [latitude]="latOrg" [longitude]="longOrg"
+       >
+           </agm-marker>
+       <agm-marker class="mapMarker"   [latitude]="latDest" [longitude]="longDest"
+       >
+    </agm-marker>
+      </agm-map>
+    </div>
+</div>
+</div>
